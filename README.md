@@ -1,14 +1,16 @@
 # Dual-Mode Autonomous Vehicle Prototype
 
-An embedded robotics prototype supporting autonomous obstacle avoidance and dynamic path navigation alongside manual override.
+An embedded robotics system supporting intelligent autonomous obstacle avoidance and dynamic manual override via serial commands (NodeMCU/ESP8266 interface).
 
-### Key Highlights
-- **Obstacle Avoidance:** Real-time path clearance using Ultrasonic and Infrared (IR) sensor arrays.
-- **Dual Operating Modes:** Smooth transitions between autonomous sensor-guided navigation and manual control.
-- **Firmware Efficiency:** Implemented motor control logic in Embedded C with optimized power states to minimize battery drain.
+### Key Features
+- **Dual Operational Modes:** Smooth toggle between Auto Navigation and Manual Override via Serial commands (`AUTO`, `MANUAL`, `F`, `B`, `L`, `R`, `S`).
+- **Look-Ahead Ultrasonic Scanning:** Servo-mounted HC-SR04 executes 180° sweeps (150° Left vs. 30° Right) to determine optimal path clearance upon threshold breach.
+- **Sensor Noise Filtering:** Implemented a software 5-sample averaging filter to eliminate ultrasonic jitter and false obstacle detection.
+- **Fail-Safe Mechanism:** Automatically defaults to autonomous collision avoidance if serial command link is interrupted.
 
-### Hardware & Tools
-- Microcontroller (Embedded C)
-- Ultrasonic Sensor (HC-SR04)
-- IR Sensor Array
-- Motor Driver (L298N)
+### Hardware Stack
+- **Microcontroller:** Arduino / Microchip ATmega328P
+- **Wireless/Interface:** NodeMCU (ESP8266) via Hardware Serial (9600 baud)
+- **Actuators:** L298N Dual H-Bridge Motor Driver, Micro Servo Motor (SG90)
+- **Sensors:** Ultrasonic Sensor (HC-SR04)
+- **Language/Framework:** Embedded C / C++ (Arduino Core)
